@@ -1,0 +1,127 @@
+﻿
+@model IEnumerable<_3S_MVCTask.Models.Supplier>
+
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+
+
+
+<button style="margin:20px;" class="btn btn-success add">Add New Supplier </button>
+
+@section scripts{
+    <script src="~/Scripts/jquery-1.12.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+    <script type="text/javascript">
+
+    $(".delete").click(function (e) {
+        var url = "/Supplier/Delete/" + $(this).attr('Id');
+        e.preventDefault();
+        //OpenPopup(url);
+        var ph = $("#DivToAppendPartialVoew");
+        ph.load(url, function () {
+            ph.dialog({
+                modal: true,
+                width: 500,
+                height: 300,
+                title: "Delete Supplier",
+                resizable: true
+            });
+        });
+
+    });
+
+    $(".edit").click(function (e) {
+        var url = "/Supplier/Edit/" + $(this).attr('Id');
+        e.preventDefault();
+        //OpenPopup(url);
+        var ph = $("#DivToAppendPartialVoew");
+        ph.load(url, function () {
+            ph.dialog({
+                modal: true,
+                width: 550,
+                height: 438,
+                title: "Edite Supplier Data",
+                resizable: true
+            });
+        });
+
+    });
+
+    $(".add").click(function (e) {
+        var url = "/Supplier/Add";
+        e.preventDefault();
+        //OpenPopup(url);
+        var ph = $("#DivToAppendPartialVoew");
+        ph.load(url, function () {
+            ph.dialog({
+                modal: true,
+                width: 600,
+                height: 500,
+                title: "Add New Supplier",
+                resizable: true
+            });
+        });
+
+    });
+
+    $("#show").click(function (e) {
+        var url = "/Supplier/largestSupplier/" + $(this).attr('Id');
+        e.preventDefault();
+        //OpenPopup(url);
+        var ph = $("#DivToAppendPartialVoew");
+        ph.load(url, function () {
+            ph.dialog({
+                modal: true,
+                width: 350,
+                height: 300,
+                title: "Largest Supplier",
+                resizable: true
+            });
+        });
+
+    });
+    </script>
+}
+
+    <div class="table-responsive ">
+        <table class="table table-hover table-striped text-center">
+            <tr>
+
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                @Html.HiddenFor(model => item.Id)
+                <tr style="padding:5px;">
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+
+
+                    <td>
+                        <button class="btn btn-info btn-large  edit" id="@item.Id">Edit Supplier</button> |
+                        <button class="btn btn-danger btn-large  delete" id="@item.Id">Delete Supplier</button>
+
+
+                    </td>
+                </tr>
+
+            }
+
+        </table>
+        @Html.ActionLink("largest Supplier", "largestSupplier", "Products", new { @class = "btn btn-primary " , id="show"})
+    </div>
+
+<div id="DivToAppendPartialVoew" style="overflow:auto"></div>
+
+
+
+

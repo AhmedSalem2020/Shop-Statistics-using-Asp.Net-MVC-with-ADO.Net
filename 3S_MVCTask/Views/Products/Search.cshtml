@@ -1,0 +1,59 @@
+﻿@model IEnumerable<_3S_MVCTask.Models.Products>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<link href="~/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+
+<br />
+<br />
+<table id="tb" class="table table-bordered table-hover table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Quantity Per Unit</th>
+            <th>Reorder Level</th>
+            <th>Unit Price</th>
+            <th>Units In Stock</th>
+            <th>Units On Order</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.pro_Name</td>
+
+                <td>@item.quantityPerUnit</td>
+                <td>@item.reorderLevel</td>
+                <td>@item.unitPrice</td>
+                <td>@item.unitsInStock</td>
+                <td>@item.unitsOnOrder</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section scripts
+    {
+    <script src="~/datatables/jquery.dataTables.js"></script>
+    <script src="~/datatables/dataTables.bootstrap.js"></script>
+
+    <script>
+        $(function() {
+            $('#tb').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": true,
+                "pagingType": "full_numbers",
+                "pageLength": 5
+            });
+        });
+    </script>
+}

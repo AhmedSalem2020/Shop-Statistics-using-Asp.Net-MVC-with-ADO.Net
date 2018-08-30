@@ -1,0 +1,73 @@
+﻿@model _3S_MVCTask.Models.Products
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+@using (Html.BeginForm("Delete", "Products", FormMethod.Post))
+{
+    @Html.HiddenFor(a => a.Id)
+    @Html.HiddenFor(a => a.pro_Name)
+    @Html.HiddenFor(a => a.quantityPerUnit)
+    @Html.HiddenFor(a => a.reorderLevel)
+    @Html.HiddenFor(a => a.unitPrice)
+    @Html.HiddenFor(a => a.unitsInStock)
+    @Html.HiddenFor(a => a.unitsOnOrder)
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.pro_Name)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.pro_Name)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.quantityPerUnit)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.quantityPerUnit)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.reorderLevel)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.reorderLevel)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.unitPrice)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.unitPrice)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.unitsInStock)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.unitsInStock)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.unitsOnOrder)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.unitsOnOrder)
+    </dd>
+
+</dl>
+
+
+    <div class="text-center col-sm-offset-2">
+        <input type="submit" value="Delete" class="btn btn-danger btn-lg" />
+    </div>
+ }
